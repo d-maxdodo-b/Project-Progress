@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, initial-scale=1">
+<title>后续工作安排 · 会议纪要</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    background: #0a0f1e;
+    font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -300px; right: -300px;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .container {
+    position: relative; z-index: 1;
+    padding: 44px 48px 36px;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 28px; }
+  .header .tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff; font-size: 14px; font-weight: 600;
+    padding: 6px 22px; border-radius: 20px;
+    letter-spacing: 3px; margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 40px; font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; letter-spacing: 3px; margin-bottom: 10px;
+  }
+  .header .subtitle { font-size: 16px; color: #94a3b8; letter-spacing: 1px; }
+  .header .date {
+    display: inline-block; margin-top: 12px;
+    font-size: 14px; color: #64748b;
+    padding: 5px 16px; border: 1px solid rgba(100,116,139,0.25); border-radius: 10px;
+  }
+
+  /* Priority Legend */
+  .priority-bar {
+    display: flex; gap: 12px; margin-bottom: 26px; justify-content: center;
+  }
+  .pi {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: #94a3b8;
+    background: rgba(255,255,255,0.03);
+    padding: 6px 14px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .pd { width: 7px; height: 7px; border-radius: 50%; }
+  .pd.p1 { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+  .pd.p2 { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.4); }
+  .pd.p3 { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
+  .pd.p4 { background: #64748b; box-shadow: 0 0 6px rgba(100,116,139,0.3); }
+
+  /* Priority Section */
+  .prio-section {
+    margin-bottom: 18px;
+    background: rgba(255,255,255,0.018);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .prio-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .prio-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 800; color: #fff; flex-shrink: 0;
+  }
+  .r1 .prio-num { background: linear-gradient(135deg, #22c55e, #16a34a); }
+  .r2 .prio-num { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+  .r3 .prio-num { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .r4 .prio-num { background: linear-gradient(135deg, #64748b, #475569); }
+  .prio-label { font-size: 18px; font-weight: 600; color: #f1f5f9; }
+  .prio-sub { font-size: 14px; color: #64748b; margin-left: auto; }
+  .prio-body { padding: 20px 28px; }
+
+  /* Item Row */
+  .item-row {
+    display: flex; gap: 14px; margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .item-row:last-child { margin-bottom: 0; }
+  .item-card {
+    flex: 1;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .item-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    border-radius: 3px 0 0 3px;
+  }
+  .item-card .ic-header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .item-card .ic-icon { font-size: 20px; flex-shrink: 0; }
+  .item-card .ic-title { font-size: 16px; font-weight: 600; color: #f1f5f9; flex: 1; }
+  .item-card .ic-badge {
+    font-size: 11px; padding: 3px 10px; border-radius: 4px; font-weight: 600;
+    letter-spacing: 0.5px; white-space: nowrap;
+  }
+  .ic-badge.low { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+  .ic-badge.mid { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .ic-badge.high { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .item-card .ic-desc { font-size: 13px; color: #6b7280; line-height: 1.7; margin-bottom: 10px; }
+  .item-card .ic-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .item-card .ic-tag {
+    font-size: 12px; color: #94a3b8;
+    background: rgba(255,255,255,0.03); padding: 4px 12px; border-radius: 5px;
+  }
+  .item-card .ic-meta {
+    display: flex; gap: 14px; font-size: 12px; color: #4b5563;
+  }
+  .item-card .ic-meta span { display: flex; align-items: center; gap: 3px; }
+  .item-card .ic-meta .val { color: #6b7280; }
+
+  /* Item card color accents */
+  .item-card.green::before { background: #22c55e; }
+  .item-card.blue::before { background: #3b82f6; }
+  .item-card.yellow::before { background: #f59e0b; }
+  .item-card.purple::before { background: #a855f7; }
+  .item-card.pink::before { background: #ec4899; }
+  .item-card.orange::before { background: #f97316; }
+  .item-card.teal::before { background: #14b8a6; }
+  .item-card.slate::before { background: #64748b; }
+
+  /* Full width item */
+  .item-row.full { display: block; }
+  .item-row.full .item-card { flex: 1; width: 100%; }
+
+  /* Status Section */
+  .status-section {
+    background: rgba(255,255,255,0.018);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 14px;
+    padding: 22px 28px;
+    margin-bottom: 18px;
+  }
+  .status-title {
+    font-size: 16px; font-weight: 600; color: #f1f5f9;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .si {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.025);
+  }
+  .si:last-child { border-bottom: none; }
+  .si-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+  .si-label { font-size: 15px; color: #e2e8f0; font-weight: 600; display: block; margin-bottom: 3px; }
+  .si-val { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+  .si-val.paused { color: #f87171; text-decoration: line-through; text-decoration-color: rgba(248,113,113,0.2); }
+  .si-val.ready { color: #4ade80; }
+  .si-val.progress { color: #fbbf24; }
+  .person-name { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .person-task { font-size: 14px; color: #e2e8f0; font-weight: 600; margin-bottom: 2px; }
+  .person-detail { font-size: 13px; color: #94a3b8; line-height: 1.7; margin-bottom: 6px; padding-left: 18px; }
+  .person-detail b { color: #cbd5e1; font-weight: 600; }
+
+  /* Footer */
+  .footer {
+    text-align: center; margin-top: 20px;
+    padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.03);
+  }
+  .footer .team { font-size: 14px; color: #475569; margin-bottom: 4px; }
+  .footer .note { font-size: 12px; color: #374151; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="tag">工 作 进 度</div>
+    <h1>近期工作安排</h1>
+    <div class="subtitle">AI工具小组近期工作展示</div>
+    <div class="date">📅 2026.04.28</div>
+  </div>
+
+  <!-- Priority Legend -->
+  <!-- ========== 个人工作进度 ========== -->
+  <div class="status-section" style="margin-bottom:20px; border:1px solid rgba(250,204,21,0.2); border-radius:14px; padding:20px 24px; background:rgba(250,204,21,0.03);">
+    <div class="status-title" style="margin-bottom:16px;">✅ 当前进展与决策 · <span style="color:#facc15; font-size:14px;">📋 待上级主管审核确认</span></div>
+
+    <!-- 陈海龙 -->
+    <div style="margin-bottom:16px;">
+      <div class="person-name">👤 陈海龙</div>
+      <div class="person-task">1. 指令词库优化</div>
+      <div class="person-detail">正在利用 <b>codex + qclaw</b> 协同整理中 · 后续应用到以下各项内容的指令词中</div>
+      <div class="person-task">2. 详情页工具 · 指令词优化</div>
+      <div class="person-detail">电商详情页生成器指令词迭代 · 结合GPT-Image-2输出图文内容</div>
+      <div class="person-task">3. 批量账号软件微调 + 素材整理</div>
+      <div class="person-detail">配合各项内容延伸 · 持续优化工具链</div>
+    </div>
+
+    <!-- 王锦程 -->
+    <div>
+      <div class="person-name">👤 王锦程</div>
+      <div class="person-task">批量化账号运营 · 素材整理和发布</div>
+      <div class="person-detail"><b>绘本 · 像素风 · 证件照 · 写真</b> — 4部手机就位 · 2部待实名 · 渲染暂缓</div>
+      <div class="person-task">舞蹈类视频内容制作</div>
+      <div class="person-detail">跟学制作中 · 参考@小只猪</div>
+    </div>
+  </div>
+
+  <div class="priority-bar">
+    <div class="pi"><span class="pd p1"></span>🥇 已启动测试</div>
+    <div class="pi"><span class="pd p2"></span>🥈 搭建流程</div>
+    <div class="pi"><span class="pd p3"></span>🥉 研究探索</div>
+    <div class="pi"><span class="pd p4"></span>🔧 技术基建</div>
+    <div class="pi"><span class="pd" style="background:#a855f7;box-shadow:0 0 6px rgba(168,85,247,0.4);"></span>🏘️ 延伸搭边</div>
+  </div>
+
+  <!-- ========== PRIORITY 1: 立即启动 ========== -->
+  <div class="prio-section r1">
+    <div class="prio-header">
+      <div class="prio-num">1</div>
+      <div class="prio-label">🥇 已启动测试 · 运作中</div>
+      <div class="prio-sub">见效周期 1-2 周</div>
+    </div>
+    <div class="prio-body">
+      <div class="item-row">
+        <div class="item-card green">
+          <div class="ic-header">
+            <div class="ic-icon">📸</div>
+            <div class="ic-title">📸 批量化AI图片账号</div>
+            <span class="ic-badge low">低门槛</span>
+          </div>
+          <div class="ic-desc">前四个手机就位（绘本/像素风/证件照/写真）还差两个实名认证 · 渲染暂缓</div>
+          <div class="ic-tags">
+            <div class="ic-tag">绘本 ✅</div>
+            <div class="ic-tag">像素风 ✅</div>
+            <div class="ic-tag">证件照 ✅</div>
+            <div class="ic-tag">个人写真 ✅</div>
+            <div class="ic-tag">渲染 ⏸️暂缓</div>
+          </div>
+          <div class="ic-meta">
+            <span>📱 <span class="val">4部手机就位 · 2部待实名</span></span>
+            <span>💰 <span class="val">C端接单</span></span>
+            <span>🎯 <span class="val">渲染有软件可直接跑 需再申请</span></span>
+          </div>
+        </div>
+        <div class="item-card blue">
+          <div class="ic-header">
+            <div class="ic-icon">📦</div>
+            <div class="ic-title">📦 虚拟资料变现</div>
+            <span class="ic-badge low">低门槛</span>
+          </div>
+          <div class="ic-desc">免费内容引流 → 私域/小店卖资料包 · 幼儿园课件竞争小、家长付费意愿强</div>
+          <div class="ic-tags">
+            <div class="ic-tag">考研资料</div>
+            <div class="ic-tag">幼儿园拼读课件</div>
+            <div class="ic-tag">AI生成资料包</div>
+          </div>
+          <div class="ic-meta">
+            <span>⏱️ <span class="val">起量快 需持续更新</span></span>
+            <span>💰 <span class="val">9.9-99元/套 走量</span></span>
+            <span>🎯 <span class="val">幼儿园拼读先试</span></span>
+          </div>
+        </div>
+        <div class="item-card pink">
+          <div class="ic-header">
+            <div class="ic-icon">💃</div>
+            <div class="ic-title">💃 舞蹈类视频账号</div>
+            <span class="ic-badge low">进行中</span>
+          </div>
+          <div class="ic-desc">正在教锦程做舞蹈类视频内容 · 抖音账号 @小只猪(参考)</div>
+          <div class="ic-tags">
+            <div class="ic-tag">舞蹈类</div>
+            <div class="ic-tag">@小只猪(参考)</div>
+            <div class="ic-tag">带教锦程</div>
+          </div>
+          <div class="ic-meta">
+            <span>🎯 <span class="val">教锦程独立制作</span></span>
+            <span>🔗 <span class="val">douyin.com/user/MS4wLjAB...</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRIORITY 2: 需学习延伸内容 ========== -->
+  <div class="prio-section r2">
+    <div class="prio-header">
+      <div class="prio-num">2</div>
+      <div class="prio-label">🥈 需学习延伸内容</div>
+      <div class="prio-sub">跟其他组学习 · 可立刻开始研究</div>
+    </div>
+    <div class="prio-body">
+      <div class="item-row">
+        <div class="item-card pink">
+          <div class="ic-header">
+            <div class="ic-icon">💍</div>
+            <div class="ic-title">💍 AI婚礼微电影</div>
+            <span class="ic-badge mid">学习中</span>
+          </div>
+          <div class="ic-desc">做1个Demo样片 → 发抖音引流 → 联系本地婚庆公司B端合作 · 上级建议视频向重点学习</div>
+          <div class="ic-tags">
+            <div class="ic-tag">婚前MV</div>
+            <div class="ic-tag">脚本分镜优化</div>
+            <div class="ic-tag">字幕优化</div>
+            <div class="ic-tag">故事感连贯性</div>
+          </div>
+          <div class="ic-meta">
+            <span>⏱️ <span class="val">1个Demo即可推广</span></span>
+            <span>💰 <span class="val">500-3000/条</span></span>
+            <span>🎯 <span class="val">脚本工具打通</span></span>
+          </div>
+        </div>
+        <div class="item-card purple">
+          <div class="ic-header">
+            <div class="ic-icon">🤖</div>
+            <div class="ic-title">🤖 数字人账号 · 旅游攻略</div>
+            <span class="ic-badge mid">学习中</span>
+          </div>
+          <div class="ic-desc">小红书热门旅游攻略 → 改写文案 → 数字人配音口播 → 发抖音</div>
+          <div class="ic-tags">
+            <div class="ic-tag">内容抓取</div>
+            <div class="ic-tag">数字人配音</div>
+            <div class="ic-tag">半自动流水线</div>
+            <div class="ic-tag">HeyGen / 剪映数字人</div>
+          </div>
+          <div class="ic-meta">
+            <span>⏱️ <span class="val">养号1-3个月</span></span>
+            <span>💰 <span class="val">广告+私域带货</span></span>
+            <span>🎯 <span class="val">结合数据抓取能力</span></span>
+          </div>
+        </div>
+        <div class="item-card orange">
+          <div class="ic-header">
+            <div class="ic-icon">🎬</div>
+            <div class="ic-title">🎬 仙侠故事账号</div>
+            <span class="ic-badge mid">学习中</span>
+          </div>
+          <div class="ic-desc">三喜爷爷路线 · 故事方向AI内容系列化 → 养号涨粉 → 直播带货/投流</div>
+          <div class="ic-tags">
+            <div class="ic-tag">仙侠账号</div>
+            <div class="ic-tag">三喜爷爷(标杆)</div>
+            <div class="ic-tag">故事路线</div>
+            <div class="ic-tag">仙侠周边/茶酒</div>
+          </div>
+          <div class="ic-meta">
+            <span>⏱️ <span class="val">3-6个月养号期</span></span>
+            <span>💰 <span class="val">直播带货+品牌投流</span></span>
+            <span>🎯 <span class="val">先做5条验证完播率</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="item-row full" style="margin-top: 10px;">
+        <div class="item-card teal">
+          <div class="ic-header">
+            <div class="ic-icon">⚙️</div>
+            <div class="ic-title">⚙️ Coze 工作流研究 · 资源已搜集较全</div>
+            <span class="ic-badge low">可立即开始</span>
+          </div>
+          <div class="ic-desc">本地资源丰富 + 飞书298个智能体合集 · 拆解工作流后可加速所有业务线内容生产</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:12px;">
+            <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); border-radius:8px; padding:12px 14px;">
+              <div style="font-size:12px; font-weight:600; color:#4ade80; margin-bottom:6px;">🏢 公司适用</div>
+              <div style="font-size:12px; color:#9ca3af; line-height:1.7;">
+                爆款文案优化 · 评论区金句<br>
+                对标博主账号拆解<br>
+                小红书爆款文案<br>
+                项目复盘报告 · 会议纪要<br>
+                联网热门话题→故事文案<br>
+                情绪化标题 · 口播文案<br>
+                文案违禁词审查
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); border-radius:8px; padding:12px 14px;">
+              <div style="font-size:12px; font-weight:600; color:#93c5fd; margin-bottom:6px;">📱 自媒体适用</div>
+              <div style="font-size:12px; color:#9ca3af; line-height:1.7;">
+                爆款短视频脚本文案<br>
+                治愈情感文案 · 名人语录<br>
+                5000字民间故事小说<br>
+                读书博主 · 历史人物解说<br>
+                英语单词记忆 · 教案板书<br>
+                AI生成散文/小说
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); border-radius:8px; padding:12px 14px;">
+              <div style="font-size:12px; font-weight:600; color:#fcd34d; margin-bottom:6px;">🛒 电商+工具</div>
+              <div style="font-size:12px; color:#9ca3af; line-height:1.7;">
+                电商详情页生成<br>
+                视频生成 · 图片生成<br>
+                特效 · 风格转换<br>
+                广告制作 · 图片处理<br>
+                Seedance2.0视频工作流<br>
+                微头条10种框架文案
+              </div>
+            </div>
+          </div>
+          <div class="ic-meta">
+            <span>📁 <span class="val">D:\AI\000-Coze工作流 (1000+文件) · 飞书298个智能体</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRIORITY 3: 研究探索 ========== -->
+  <div class="prio-section r3">
+    <div class="prio-header">
+      <div class="prio-num">3</div>
+      <div class="prio-label">🥉 研究探索 · 了解方向</div>
+      <div class="prio-sub">配合学习 / 长期准备</div>
+    </div>
+    <div class="prio-body">
+      <div class="item-row">
+        <div class="item-card slate">
+          <div class="ic-header">
+            <div class="ic-icon">🤖</div>
+            <div class="ic-title">🤖 AI 硬件方向</div>
+            <span class="ic-badge high">需研究</span>
+          </div>
+          <div class="ic-desc">AI硬件类产品研究 · 账号方向探索 · 为公司找对标产品</div>
+          <div class="ic-tags">
+            <div class="ic-tag">产品图谱</div>
+            <div class="ic-tag">对标研究</div>
+            <div class="ic-tag">测评带货</div>
+          </div>
+          <div class="ic-meta">
+            <span>⏱️ <span class="val">先内部研究产品</span></span>
+            <span>🎯 <span class="val">再决定是否做账号</span></span>
+          </div>
+        </div>
+        <div class="item-card green">
+          <div class="ic-header">
+            <div class="ic-icon">🔮</div>
+            <div class="ic-title">🔮 线上虚拟产品探索</div>
+            <span class="ic-badge low">AI可落地</span>
+          </div>
+          <div class="ic-desc">高毛利轻资产 · 纯线上交付 · AI赋能批量生成内容素材</div>
+          <div class="ic-tags">
+            <div class="ic-tag">小吃配方(电子版)</div>
+            <div class="ic-tag">电子路书(自驾游)</div>
+            <div class="ic-tag">小语种带货视频</div>
+            <div class="ic-tag">动物云养殖素材</div>
+            <div class="ic-tag">情绪/玄学类服务</div>
+          </div>
+          <div class="ic-meta">
+            <span>💰 <span class="val">38-99元/单 走量</span></span>
+            <span>🎯 <span class="val">虚拟资料账号直接扩展</span></span>
+          </div>
+        </div>
+        <div class="item-card teal">
+          <div class="ic-header">
+            <div class="ic-icon">🌐</div>
+            <div class="ic-title">🌐 跨境与自建站方向</div>
+            <span class="ic-badge high">需研究</span>
+          </div>
+          <div class="ic-desc">各国信息发布渠道与媒体类型研究 · 主流国家媒体抓取对比平台</div>
+          <div class="ic-tags">
+            <div class="ic-tag">AI自建站</div>
+            <div class="ic-tag">端口优化</div>
+            <div class="ic-tag">站点优化</div>
+            <div class="ic-tag">私域优化</div>
+            <div class="ic-tag">跨国信息差</div>
+            <div class="ic-tag">各国媒体类型</div>
+          </div>
+          <div class="ic-meta">
+            <span>⏱️ <span class="val">6个月+布局</span></span>
+            <span>🎯 <span class="val">先跑通信息抓取平台</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRIORITY 5: 延伸本地服务类 ========== -->
+  <div class="prio-section r4" style="border-color:rgba(168,85,247,0.15);">
+    <div class="prio-header">
+      <div class="prio-num" style="background:linear-gradient(135deg,#a855f7,#7c3aed);">4</div>
+      <div class="prio-label">🏘️ 延伸本地服务类 · AI可搭边</div>
+      <div class="prio-sub">线下服务 → AI内容赋能</div>
+    </div>
+    <div class="prio-body">
+      <div class="item-row">
+        <div class="item-card" style="--accent:#a855f7;">
+          <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:#a855f7;border-radius:3px 0 0 3px;"></div>
+          <div class="ic-header">
+            <div class="ic-icon">🏠</div>
+            <div class="ic-title">🏠 适老化 · AI设计方案</div>
+            <span class="ic-badge low">可搭边</span>
+          </div>
+          <div class="ic-desc">AI生成适老化改造前后对比效果图、方案设计图 · 2.8亿老年人口市场</div>
+          <div class="ic-tags">
+            <div class="ic-tag">改造方案图</div>
+            <div class="ic-tag">前后对比渲染</div>
+            <div class="ic-tag">户型优化建议</div>
+          </div>
+          <div class="ic-meta">
+            <span>🎯 <span class="val">渲染账号能力直接延伸</span></span>
+          </div>
+        </div>
+        <div class="item-card" style="--accent:#f472b6;">
+          <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:#f472b6;border-radius:3px 0 0 3px;"></div>
+          <div class="ic-header">
+            <div class="ic-icon">💬</div>
+            <div class="ic-title">💬 银发聊天工具</div>
+            <span class="ic-badge low">可搭边</span>
+          </div>
+          <div class="ic-desc">AI语音助手/简易聊天界面 · 解决老年群体情感陪伴需求</div>
+          <div class="ic-tags">
+            <div class="ic-tag">AI语音助手</div>
+            <div class="ic-tag">大字版UI</div>
+            <div class="ic-tag">语音交互</div>
+          </div>
+          <div class="ic-meta">
+            <span>🎯 <span class="val">AI语音+界面设计能力</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="item-row" style="margin-top:10px;">
+        <div class="item-card" style="--accent:#fb923c;">
+          <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:#fb923c;border-radius:3px 0 0 3px;"></div>
+          <div class="ic-header">
+            <div class="ic-icon">🔧</div>
+            <div class="ic-title">🔧 维修/拆解 · 线上培训内容</div>
+            <span class="ic-badge mid">可搭边</span>
+          </div>
+          <div class="ic-desc">旧机电拆解教学 + 家具水电维修教程短视频矩阵 · AI脚本+分镜+字幕流水线</div>
+          <div class="ic-tags">
+            <div class="ic-tag">拆解教学视频</div>
+            <div class="ic-tag">配件分类图册</div>
+            <div class="ic-tag">维修教程矩阵</div>
+            <div class="ic-tag">AI脚本+字幕</div>
+          </div>
+          <div class="ic-meta">
+            <span>🎯 <span class="val">脚本工具+内容生产流水线</span></span>
+          </div>
+        </div>
+        <div class="item-card" style="--accent:#38bdf8;">
+          <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:#38bdf8;border-radius:3px 0 0 3px;"></div>
+          <div class="ic-header">
+            <div class="ic-icon">🐾</div>
+            <div class="ic-title">🐾 宠物 · AI产品服务</div>
+            <span class="ic-badge low">可搭边</span>
+          </div>
+          <div class="ic-desc">AI宠物写真/摄影样片 · 宠物表情包 · 纪念海报/追忆视频模板 · 高客单价延伸</div>
+          <div class="ic-tags">
+            <div class="ic-tag">AI宠物写真</div>
+            <div class="ic-tag">宠物表情包</div>
+            <div class="ic-tag">纪念海报模板</div>
+            <div class="ic-tag">追忆视频模板</div>
+          </div>
+          <div class="ic-meta">
+            <span>🎯 <span class="val">证件照/写真账号直接扩展</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRIORITY 4: 技术基础设施 ========== -->
+  <div class="prio-section r4">
+    <div class="prio-header">
+      <div class="prio-num">5</div>
+      <div class="prio-label">🔧 技术基础设施 · 持续建设</div>
+      <div class="prio-sub">重点要做</div>
+    </div>
+    <div class="prio-body">
+      <div class="item-row full">
+        <div class="item-card blue">
+          <div class="ic-header">
+            <div class="ic-icon">🛠️</div>
+            <div class="ic-title">🛠️ 信息中台 + 工具链</div>
+            <span class="ic-badge low">重点要做</span>
+          </div>
+          <div class="ic-desc">榜单合并查询 + 智能体搜索 · 数据抓取与分析</div>
+          <div class="ic-tags">
+            <div class="ic-tag">信息中台</div>
+            <div class="ic-tag">榜单合并查询</div>
+            <div class="ic-tag">智能体搜索</div>
+            <div class="ic-tag">数据抓取</div>
+          </div>
+          <div class="ic-meta">
+            <span>🎯 <span class="val">服务所有业务线的内容生产和数据获取</span></span>
+            <span>📊 <span class="val">上级建议重点学习视频向</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="team">AI 创新中心 · 内部分享</p>
+    <p class="note">信息以会议讨论为准 · 供组内参考</p>
+  </div>
+
+</div>
+</body>
+</html>
