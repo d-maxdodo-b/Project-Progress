@@ -438,6 +438,40 @@
     font-size: 0.78rem;
   }
 
+  /* ====== Back to Top Button ====== */
+  .back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #a29bfe);
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(108,92,231,0.35);
+    border: none;
+    outline: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+  .back-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(108,92,231,0.5);
+  }
+
   /* ====== Responsive ====== */
   @media (max-width: 900px) {
     body { padding: 1rem; }
@@ -446,6 +480,7 @@
     .calc-grid { grid-template-columns: 1fr 1fr; }
     .dept-grid { grid-template-columns: 1fr 1fr; }
     .status-grid { grid-template-columns: 1fr; }
+    .back-to-top { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 18px; }
   }
 </style>
 </head>
@@ -469,7 +504,7 @@
 
   <!-- ====== Project Overview ====== -->
   <div class="project-nav">
-    <div class="project-card p1">
+    <div class="project-card p1" onclick="document.getElementById('proj1').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">
       <div class="project-icon">🗺️</div>
       <h2>旅游攻略手绘地图生成器</h2>
       <div class="desc">输入目的地+天数+风格 → 自动生成手绘风格旅游指引地图</div>
@@ -480,7 +515,7 @@
         <span class="tag tag-pink">服务售卖</span>
       </div>
     </div>
-    <div class="project-card p2">
+    <div class="project-card p2" onclick="document.getElementById('proj2').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">
       <div class="project-icon">🎬</div>
       <h2>Grok 口播类视频工具生成器</h2>
       <div class="desc">文案+模特图 → AI优化文案 → 批量生成口播视频 → 多平台发布</div>
@@ -497,7 +532,7 @@
   <!--            PROJECT 1: 旅游攻略手绘地图生成器                    -->
   <!-- ============================================================ -->
 
-  <div class="divider">
+  <div class="divider" id="proj1">
     <span class="label">🗺️ 项目一 · 旅游攻略手绘地图生成器</span>
   </div>
 
@@ -642,7 +677,7 @@
   <!--            PROJECT 2: Grok 口播视频生成器                      -->
   <!-- ============================================================ -->
 
-  <div class="divider">
+  <div class="divider" id="proj2">
     <span class="label">🎬 项目二 · Grok 口播类视频工具生成器</span>
   </div>
 
@@ -945,7 +980,26 @@
     document.onkeydown = function(e) {
       if (e.key === 'Escape') closeLightbox();
     };
+
+    /* ====== Back to Top ====== */
+    (function() {
+      var btn = document.getElementById('backToTop');
+      if (!btn) return;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          btn.className = 'back-to-top show';
+        } else {
+          btn.className = 'back-to-top';
+        }
+      });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
   </script>
+
+  <!-- ====== Back to Top Button ====== -->
+  <button class="back-to-top" id="backToTop" title="返回页首">⬆</button>
 
   <!-- ====== Footer ====== -->
   <div class="footer">
