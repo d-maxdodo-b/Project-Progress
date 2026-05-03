@@ -8,9 +8,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1080px;
-    background: #0a0f1e;
+    background: #f5f7fb;
     font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-    color: #e2e8f0;
+    color: #334155;
     overflow-x: hidden;
   }
   body::before {
@@ -18,7 +18,7 @@
     position: fixed;
     top: -300px; right: -300px;
     width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 60%);
     pointer-events: none;
   }
   .container {
@@ -37,15 +37,16 @@
   }
   .header h1 {
     font-size: 40px; font-weight: 700;
-    background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; letter-spacing: 3px; margin-bottom: 10px;
   }
-  .header .subtitle { font-size: 16px; color: #94a3b8; letter-spacing: 1px; }
+  .header .subtitle { font-size: 16px; color: #64748b; letter-spacing: 1px; }
   .header .date {
     display: inline-block; margin-top: 12px;
-    font-size: 14px; color: #64748b;
-    padding: 5px 16px; border: 1px solid rgba(100,116,139,0.25); border-radius: 10px;
+    font-size: 14px; color: #475569;
+    padding: 5px 16px; border: 1px solid #e2e8f0; border-radius: 10px;
+    background: #fff;
   }
 
   /* Priority Legend */
@@ -54,29 +55,31 @@
   }
   .pi {
     display: flex; align-items: center; gap: 6px;
-    font-size: 13px; color: #94a3b8;
-    background: rgba(255,255,255,0.03);
+    font-size: 13px; color: #475569;
+    background: #fff;
     padding: 6px 14px; border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid #e2e8f0;
   }
   .pd { width: 7px; height: 7px; border-radius: 50%; }
-  .pd.p1 { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
-  .pd.p2 { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.4); }
-  .pd.p3 { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
-  .pd.p4 { background: #64748b; box-shadow: 0 0 6px rgba(100,116,139,0.3); }
+  .pd.p1 { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.3); }
+  .pd.p2 { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.3); }
+  .pd.p3 { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.3); }
+  .pd.p4 { background: #94a3b8; box-shadow: 0 0 6px rgba(148,163,184,0.3); }
 
   /* Priority Section */
   .prio-section {
     margin-bottom: 18px;
-    background: rgba(255,255,255,0.018);
-    border: 1px solid rgba(255,255,255,0.04);
+    background: #fff;
+    border: 1px solid #e2e8f0;
     border-radius: 14px;
     overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
   .prio-header {
     display: flex; align-items: center; gap: 12px;
     padding: 18px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid #f1f5f9;
+    background: #fafbfd;
   }
   .prio-num {
     width: 36px; height: 36px; border-radius: 10px;
@@ -86,9 +89,9 @@
   .r1 .prio-num { background: linear-gradient(135deg, #22c55e, #16a34a); }
   .r2 .prio-num { background: linear-gradient(135deg, #3b82f6, #2563eb); }
   .r3 .prio-num { background: linear-gradient(135deg, #f59e0b, #d97706); }
-  .r4 .prio-num { background: linear-gradient(135deg, #64748b, #475569); }
-  .prio-label { font-size: 18px; font-weight: 600; color: #f1f5f9; }
-  .prio-sub { font-size: 14px; color: #64748b; margin-left: auto; }
+  .r4 .prio-num { background: linear-gradient(135deg, #94a3b8, #64748b); }
+  .prio-label { font-size: 18px; font-weight: 600; color: #1e293b; }
+  .prio-sub { font-size: 14px; color: #94a3b8; margin-left: auto; }
   .prio-body { padding: 20px 28px; }
 
   /* Item Row */
@@ -99,8 +102,8 @@
   .item-row:last-child { margin-bottom: 0; }
   .item-card {
     flex: 1;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.04);
+    background: #fafbfd;
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 18px 20px;
     position: relative;
@@ -116,25 +119,26 @@
     display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
   }
   .item-card .ic-icon { font-size: 20px; flex-shrink: 0; }
-  .item-card .ic-title { font-size: 16px; font-weight: 600; color: #f1f5f9; flex: 1; }
+  .item-card .ic-title { font-size: 16px; font-weight: 600; color: #1e293b; flex: 1; }
   .item-card .ic-badge {
     font-size: 11px; padding: 3px 10px; border-radius: 4px; font-weight: 600;
     letter-spacing: 0.5px; white-space: nowrap;
   }
-  .ic-badge.low { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
-  .ic-badge.mid { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
-  .ic-badge.high { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
-  .item-card .ic-desc { font-size: 13px; color: #6b7280; line-height: 1.7; margin-bottom: 10px; }
+  .ic-badge.low { background: rgba(34,197,94,0.1); color: #16a34a; border: 1px solid rgba(34,197,94,0.2); }
+  .ic-badge.mid { background: rgba(59,130,246,0.1); color: #2563eb; border: 1px solid rgba(59,130,246,0.2); }
+  .ic-badge.high { background: rgba(245,158,11,0.1); color: #d97706; border: 1px solid rgba(245,158,11,0.2); }
+  .item-card .ic-desc { font-size: 13px; color: #64748b; line-height: 1.7; margin-bottom: 10px; }
   .item-card .ic-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .item-card .ic-tag {
-    font-size: 12px; color: #94a3b8;
-    background: rgba(255,255,255,0.03); padding: 4px 12px; border-radius: 5px;
+    font-size: 12px; color: #475569;
+    background: #fff; padding: 4px 12px; border-radius: 5px;
+    border: 1px solid #e2e8f0;
   }
   .item-card .ic-meta {
-    display: flex; gap: 14px; font-size: 12px; color: #4b5563;
+    display: flex; gap: 14px; font-size: 12px; color: #94a3b8;
   }
   .item-card .ic-meta span { display: flex; align-items: center; gap: 3px; }
-  .item-card .ic-meta .val { color: #6b7280; }
+  .item-card .ic-meta .val { color: #64748b; }
 
   /* Item card color accents */
   .item-card.green::before { background: #22c55e; }
@@ -152,41 +156,42 @@
 
   /* Status Section */
   .status-section {
-    background: rgba(255,255,255,0.018);
-    border: 1px solid rgba(255,255,255,0.04);
+    background: #fff;
+    border: 1px solid #e2e8f0;
     border-radius: 14px;
     padding: 22px 28px;
     margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
   .status-title {
-    font-size: 16px; font-weight: 600; color: #f1f5f9;
+    font-size: 16px; font-weight: 600; color: #1e293b;
     margin-bottom: 16px;
     display: flex; align-items: center; gap: 8px;
   }
   .si {
     display: flex; align-items: flex-start; gap: 10px;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.025);
+    border-bottom: 1px solid #f1f5f9;
   }
   .si:last-child { border-bottom: none; }
   .si-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
-  .si-label { font-size: 15px; color: #e2e8f0; font-weight: 600; display: block; margin-bottom: 3px; }
-  .si-val { font-size: 13px; color: #94a3b8; line-height: 1.7; }
-  .si-val.paused { color: #f87171; text-decoration: line-through; text-decoration-color: rgba(248,113,113,0.2); }
-  .si-val.ready { color: #4ade80; }
-  .si-val.progress { color: #fbbf24; }
-  .person-name { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .person-task { font-size: 14px; color: #e2e8f0; font-weight: 600; margin-bottom: 2px; }
-  .person-detail { font-size: 13px; color: #94a3b8; line-height: 1.7; margin-bottom: 6px; padding-left: 18px; }
-  .person-detail b { color: #cbd5e1; font-weight: 600; }
+  .si-label { font-size: 15px; color: #334155; font-weight: 600; display: block; margin-bottom: 3px; }
+  .si-val { font-size: 13px; color: #64748b; line-height: 1.7; }
+  .si-val.paused { color: #ef4444; text-decoration: line-through; text-decoration-color: rgba(239,68,68,0.2); }
+  .si-val.ready { color: #16a34a; }
+  .si-val.progress { color: #d97706; }
+  .person-name { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
+  .person-task { font-size: 14px; color: #334155; font-weight: 600; margin-bottom: 2px; }
+  .person-detail { font-size: 13px; color: #64748b; line-height: 1.7; margin-bottom: 6px; padding-left: 18px; }
+  .person-detail b { color: #475569; font-weight: 600; }
 
   /* Footer */
   .footer {
     text-align: center; margin-top: 20px;
-    padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.03);
+    padding-top: 16px; border-top: 1px solid #e2e8f0;
   }
-  .footer .team { font-size: 14px; color: #475569; margin-bottom: 4px; }
-  .footer .note { font-size: 12px; color: #374151; letter-spacing: 0.5px; }
+  .footer .team { font-size: 14px; color: #94a3b8; margin-bottom: 4px; }
+  .footer .note { font-size: 12px; color: #94a3b8; letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
@@ -202,7 +207,7 @@
 
   <!-- Priority Legend -->
   <!-- ========== 个人工作进度 ========== -->
-  <div class="status-section" style="margin-bottom:20px; border:1px solid rgba(250,204,21,0.2); border-radius:14px; padding:20px 24px; background:rgba(250,204,21,0.03);">
+  <div class="status-section" style="margin-bottom:20px; border:1px solid #e2e8f0; border-radius:14px; padding:20px 24px;">
     <div class="status-title" style="margin-bottom:16px;">✅ 当前进展与决策 · <span style="color:#facc15; font-size:14px;">✅ 审核完毕</span></div>
 
     <!-- 陈海龙 -->
@@ -212,6 +217,21 @@
       <div class="person-detail">电商详情页生成器指令词迭代 · 结合GPT-Image-2输出图文内容</div>
       <div class="person-task">2. 地图生成器开发</div>
       <div class="person-detail">地图可视化工具开发 · 持续推进</div>
+      <div style="margin-top:12px; margin-bottom:8px; font-size:13px; color:#475569; font-weight:600;">🎨 地图效果展示</div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:6px;">
+        <div style="flex:1; min-width:180px; background:#fafbfd; border:1px solid #e2e8f0; border-radius:10px; padding:10px; text-align:center;">
+          <img src="https://d-maxdodo-b.github.io/Project-Progress/map-tests/taishan.png" style="width:100%; border-radius:6px; margin-bottom:6px; max-height:140px; object-fit:contain;" />
+          <div style="font-size:12px; color:#64748b;">🏔️ 泰山</div>
+        </div>
+        <div style="flex:1; min-width:180px; background:#fafbfd; border:1px solid #e2e8f0; border-radius:10px; padding:10px; text-align:center;">
+          <img src="https://d-maxdodo-b.github.io/Project-Progress/map-tests/zibo.png" style="width:100%; border-radius:6px; margin-bottom:6px; max-height:140px; object-fit:contain;" />
+          <div style="font-size:12px; color:#64748b;">🏛️ 淄博</div>
+        </div>
+        <div style="flex:1; min-width:180px; background:#fafbfd; border:1px solid #e2e8f0; border-radius:10px; padding:10px; text-align:center;">
+          <img src="https://d-maxdodo-b.github.io/Project-Progress/map-tests/qingdao.png" style="width:100%; border-radius:6px; margin-bottom:6px; max-height:140px; object-fit:contain;" />
+          <div style="font-size:12px; color:#64748b;">🌊 青岛</div>
+        </div>
+      </div>
       <div class="person-task">3. Grok口播视频生成器</div>
       <div class="person-detail">基于Grok的口播视频自动生成工具开发</div>
     </div>
