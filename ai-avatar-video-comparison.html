@@ -457,13 +457,14 @@
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), #a29bfe);
     color: #fff;
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(108,92,231,0.35);
-    border: none;
+    box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+    border: 2px solid rgba(255,255,255,0.3);
     outline: none;
     opacity: 0;
     pointer-events: none;
@@ -996,13 +997,8 @@
     (function() {
       var btn = document.getElementById('backToTop');
       if (!btn) return;
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
-          btn.className = 'back-to-top show';
-        } else {
-          btn.className = 'back-to-top';
-        }
-      });
+      // 页面加载后始终显示
+      btn.className = 'back-to-top show';
       btn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
