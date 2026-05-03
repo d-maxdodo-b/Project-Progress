@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI创新中心 · 部分开发项目方案征集建议</title>
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --card: #ffffff;
+    --card-alt: #f8f9fc;
+    --border: #e4e7f0;
+    --accent: #6c5ce7;
+    --accent2: #00b894;
+    --accent3: #e17055;
+    --text: #2d3436;
+    --muted: #636e72;
+    --green: #00b894;
+    --red: #d63031;
+    --blue: #0984e3;
+    --pink: #e84393;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 2rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ====== Header ====== */
+  .header {
+    text-align: center;
+    padding: 2.5rem 0 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .header .dept {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #a29bfe);
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+  }
+  .header h1 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .header .meta { color: var(--muted); font-size: 0.82rem; }
+
+  /* ====== Notice Bar ====== */
+  .notice {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 1rem 1.3rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    box-shadow: var(--shadow);
+  }
+  .notice .notice-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .notice strong { color: var(--text); }
+
+  /* ====== Project Nav Cards ====== */
+  .project-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem;
+    transition: all 0.3s;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .project-card.p1::before { background: linear-gradient(90deg, var(--accent3), #fdcb6e); }
+  .project-card.p2::before { background: linear-gradient(90deg, var(--accent), #a29bfe); }
+  .project-card .project-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .project-card h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+  .project-card .desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.7rem; }
+  .project-card .tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+  .project-card .tag {
+    display: inline-block;
+    padding: 0.12rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+  .tag-amber { background: #fff3e0; color: #e17055; }
+  .tag-purple { background: #ede7f6; color: #6c5ce7; }
+  .tag-green { background: #e8f5e9; color: #00b894; }
+  .tag-blue { background: #e3f2fd; color: #0984e3; }
+  .tag-pink { background: #fce4ec; color: #e84393; }
+
+  /* ====== Divider ====== */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0 1.8rem;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .divider .label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ====== Section ====== */
+  .section { margin-bottom: 2.2rem; }
+  .section-head {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--accent3);
+  }
+  .section-head.purple { border-left-color: var(--accent); }
+
+  /* ====== Image Gallery ====== */
+  .image-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .image-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .image-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .image-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .image-item .img-label {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  /* ====== Lightbox ====== */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+    animation: fadeIn 0.2s ease;
+  }
+  .lightbox.show { display: flex; }
+  .lightbox img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    animation: zoomIn 0.25s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes zoomIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  /* ====== Feature Grid ====== */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .feature-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+  }
+  .feature-item .fi-icon { font-size: 1.3rem; margin-bottom: 0.4rem; }
+  .feature-item h4 { font-size: 0.88rem; margin-bottom: 0.2rem; }
+  .feature-item p { font-size: 0.76rem; color: var(--muted); }
+
+  /* ====== Table ====== */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+  }
+  th {
+    background: var(--card-alt);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #f0f0f5;
+    font-size: 0.83rem;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbff; }
+  td:first-child { color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+  /* ====== Bar Charts ====== */
+  .bar-group { display: flex; flex-direction: column; gap: 0.6rem; }
+  .bar-row { display: flex; align-items: center; gap: 0.8rem; font-size: 0.8rem; }
+  .bar-label { min-width: 80px; color: var(--muted); text-align: right; font-size: 0.78rem; }
+  .bar-track {
+    flex: 1;
+    height: 20px;
+    background: #f0f0f5;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .bar-fill.amber { background: linear-gradient(90deg, #e17055, #fdcb6e); }
+  .bar-fill.purple { background: linear-gradient(90deg, #6c5ce7, #a29bfe); }
+  .bar-fill.green { background: linear-gradient(90deg, #00b894, #55efc4); }
+
+  /* ====== Status Cards ====== */
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+  .status-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    box-shadow: var(--shadow);
+  }
+  .status-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .status-icon.done { background: #e8f5e9; }
+  .status-icon.test { background: #fff3e0; }
+  .status-icon.idea { background: #e3f2fd; }
+  .status-info h4 { font-size: 0.85rem; }
+  .status-info p { font-size: 0.73rem; color: var(--muted); }
+
+  /* ====== Timeline ====== */
+  .timeline { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+  .tl-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .tl-item .phase {
+    display: inline-block;
+    padding: 0.12rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .tl-item.t1 .phase { background: #e8f5e9; color: #00b894; }
+  .tl-item.t2 .phase { background: #ede7f6; color: #6c5ce7; }
+  .tl-item.t3 .phase { background: #fff3e0; color: #e17055; }
+  .tl-item h3 { font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .tl-item ul { list-style: none; font-size: 0.78rem; color: var(--muted); }
+  .tl-item ul li { padding: 0.12rem 0 0.12rem 0.8rem; position: relative; }
+  .tl-item ul li::before { content: '›'; position: absolute; left: 0; font-weight: 700; }
+
+  /* ====== Cost Cards ====== */
+  .cost-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .cost-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .cost-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .cost-card.cc-api::before { background: var(--accent); }
+  .cost-card.cc-manual::before { background: var(--accent2); }
+  .cost-card h3 {
+    font-size: 0.92rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .cost-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #f0f0f5;
+  }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-row .cl { color: var(--muted); }
+  .cost-row .cv { font-weight: 600; }
+  .cost-highlight {
+    background: #fff9e6;
+    border: 1px dashed #f9ca24;
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--accent3);
+    font-weight: 600;
+  }
+
+  /* ====== Calc Grid ====== */
+  .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+  .calc-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .calc-item .qty { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--text); }
+  .calc-item .costs {
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    margin: 0.4rem 0;
+    font-size: 0.73rem;
+  }
+  .calc-item .ca { color: var(--accent); font-weight: 600; }
+  .calc-item .cm { color: var(--accent2); font-weight: 600; }
+
+  /* ====== Dept Grid ====== */
+  .dept-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; }
+  .dept-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem;
+    text-align: center;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .dept-item:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .dept-item .di-icon { font-size: 1.4rem; margin-bottom: 0.2rem; }
+  .dept-item h4 { font-size: 0.8rem; margin-bottom: 0.15rem; }
+  .dept-item p { font-size: 0.68rem; color: var(--muted); }
+
+  /* ====== Footer ====== */
+  .footer {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  /* ====== Responsive ====== */
+  @media (max-width: 900px) {
+    body { padding: 1rem; }
+    .project-nav, .cost-duo { grid-template-columns: 1fr; }
+    .feature-grid, .timeline, .image-gallery { grid-template-columns: 1fr; }
+    .calc-grid { grid-template-columns: 1fr 1fr; }
+    .dept-grid { grid-template-columns: 1fr 1fr; }
+    .status-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ====== Header ====== -->
+  <div class="header">
+    <div class="dept">AI Innovation Center · 工具开发组</div>
+    <h1>🔧 部分开发项目方案征集建议</h1>
+    <p class="meta">经上级审核后发布 · 征求各部门建议 · 2026-05-03</p>
+  </div>
+
+  <!-- ====== Notice ====== -->
+  <div class="notice">
+    <div class="notice-icon">📢</div>
+    <div>
+      <strong>使用说明：</strong>以下两个项目经上级审核后发到此群，征求大家的建议进行功能优化。如各部门有现成需求可直接对接使用。有新的想法建议请私聊提出，将进行优化开发。谢谢！
+    </div>
+  </div>
+
+  <!-- ====== Project Overview ====== -->
+  <div class="project-nav">
+    <div class="project-card p1">
+      <div class="project-icon">🗺️</div>
+      <h2>旅游攻略手绘地图生成器</h2>
+      <div class="desc">输入目的地+天数+风格 → 自动生成手绘风格旅游指引地图</div>
+      <div class="tags">
+        <span class="tag tag-amber">电商赠品</span>
+        <span class="tag tag-green">实体店引流</span>
+        <span class="tag tag-blue">虚拟资料</span>
+        <span class="tag tag-pink">服务售卖</span>
+      </div>
+    </div>
+    <div class="project-card p2">
+      <div class="project-icon">🎬</div>
+      <h2>Grok 口播类视频工具生成器</h2>
+      <div class="desc">文案+模特图 → AI优化文案 → 批量生成口播视频 → 多平台发布</div>
+      <div class="tags">
+        <span class="tag tag-purple">批量生产</span>
+        <span class="tag tag-amber">刷单视频</span>
+        <span class="tag tag-green">京东/淘系</span>
+        <span class="tag tag-blue">跨境/新媒体</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--            PROJECT 1: 旅游攻略手绘地图生成器                    -->
+  <!-- ============================================================ -->
+
+  <div class="divider">
+    <span class="label">🗺️ 项目一 · 旅游攻略手绘地图生成器</span>
+  </div>
+
+  <!-- 地图效果展示 -->
+  <div class="section">
+    <div class="section-head">🎨 地图效果展示</div>
+    <div class="image-gallery">
+      <div class="image-item" onclick="openLightbox(this)">
+        <img src="泰山.png" alt="泰山手绘地图">
+        <div class="img-label">🏔️ 泰山 · 手绘攻略地图</div>
+      </div>
+      <div class="image-item" onclick="openLightbox(this)">
+        <img src="淄博.png" alt="淄博手绘地图">
+        <div class="img-label">🔥 淄博 · 手绘攻略地图</div>
+      </div>
+      <div class="image-item" onclick="openLightbox(this)">
+        <img src="青岛.png" alt="青岛手绘地图">
+        <div class="img-label">🌊 青岛 · 手绘攻略地图</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心功能 -->
+  <div class="section">
+    <div class="section-head">核心功能</div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="fi-icon">📍</div>
+        <h4>目的地输入</h4>
+        <p>输入旅行目的地 + 旅行天数，自动规划行程路线</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">🎨</div>
+        <h4>风格选择</h4>
+        <p>多种手绘地图风格可选，匹配不同品牌调性和用户偏好</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">🗺️</div>
+        <h4>一键生成</h4>
+        <p>自动生成带路线指引的精美手绘风格地图</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 应用场景 -->
+  <div class="section">
+    <div class="section-head">应用场景 & 需求部门</div>
+    <div class="dept-grid">
+      <div class="dept-item">
+        <div class="di-icon">🏪</div>
+        <h4>实体店</h4>
+        <p>旅游周边赠品引流</p>
+      </div>
+      <div class="dept-item">
+        <div class="di-icon">🛒</div>
+        <h4>电商销售</h4>
+        <p>虚拟资料赠品服务</p>
+      </div>
+      <div class="dept-item">
+        <div class="di-icon">📱</div>
+        <h4>新媒体运营</h4>
+        <p>小红书/抖音内容素材</p>
+      </div>
+      <div class="dept-item">
+        <div class="di-icon">💼</div>
+        <h4>对外售卖</h4>
+        <p>软件服务化产品</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 待规划需求 -->
+  <div class="section">
+    <div class="section-head">💡 创意建议需求（征求意见）</div>
+    <div class="status-grid">
+      <div class="status-item">
+        <div class="status-icon idea">🌍</div>
+        <div class="status-info">
+          <h4>全世界旅行覆盖</h4>
+          <p>扩展全球热门旅游目的地数据库</p>
+        </div>
+      </div>
+      <div class="status-item">
+        <div class="status-icon idea">🍜</div>
+        <div class="status-info">
+          <h4>吃喝玩乐指引</h4>
+          <p>在地图上标注美食/景点/娱乐推荐</p>
+        </div>
+      </div>
+      <div class="status-item">
+        <div class="status-icon idea">📅</div>
+        <div class="status-info">
+          <h4>行程天数智能规划</h4>
+          <p>根据天数自动分配每日路线</p>
+        </div>
+      </div>
+      <div class="status-item">
+        <div class="status-icon idea">🤝</div>
+        <div class="status-info">
+          <h4>欢迎各部门提建议</h4>
+          <p>有想法请私聊，持续优化完善</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 路线图 -->
+  <div class="section">
+    <div class="section-head">实施路线</div>
+    <div class="timeline">
+      <div class="tl-item t1">
+        <span class="phase">前期</span>
+        <h3>固定批量生成</h3>
+        <ul>
+          <li>生成一批热门目的地地图</li>
+          <li>作为虚拟资料赠品使用</li>
+          <li>收集各部门反馈需求</li>
+        </ul>
+      </div>
+      <div class="tl-item t2">
+        <span class="phase">中期</span>
+        <h3>功能完善</h3>
+        <ul>
+          <li>增加全球目的地覆盖</li>
+          <li>吃喝玩乐指引功能</li>
+          <li>风格多样化</li>
+        </ul>
+      </div>
+      <div class="tl-item t3">
+        <span class="phase">后期</span>
+        <h3>服务化售卖</h3>
+        <ul>
+          <li>软件产品化</li>
+          <li>作为SaaS服务对外售卖</li>
+          <li>API接口开放</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--            PROJECT 2: Grok 口播视频生成器                      -->
+  <!-- ============================================================ -->
+
+  <div class="divider">
+    <span class="label">🎬 项目二 · Grok 口播类视频工具生成器</span>
+  </div>
+
+  <!-- 核心功能 -->
+  <div class="section">
+    <div class="section-head purple">工作流程</div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="fi-icon">📝</div>
+        <h4>文案输入</h4>
+        <p>运营给出一大段文案 + 需求视频条数</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">🤖</div>
+        <h4>AI 智能优化</h4>
+        <p>AI 智能体自动优化整理文案，拆分为多条口播稿</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">🧑</div>
+        <h4>模特图选择</h4>
+        <p>上传可商用图片 / 内置模特库 / 自定义文字生成</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">🎬</div>
+        <h4>批量生成</h4>
+        <p>自动生成多条口播视频案例（10s/条）</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">📤</div>
+        <h4>多平台适配</h4>
+        <p>京东逛逛、淘系、新媒体、跨境等平台</p>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon">🔮</div>
+        <h4>未来扩展</h4>
+        <p>智能体生成口播/刷单/其他需求视频</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 适用部门 -->
+  <div class="section">
+    <div class="section-head purple">适用部门 & 场景</div>
+    <div class="dept-grid">
+      <div class="dept-item">
+        <div class="di-icon">🛍️</div>
+        <h4>京东运营</h4>
+        <p>逛逛视频 / 刷单视频</p>
+      </div>
+      <div class="dept-item">
+        <div class="di-icon">🛒</div>
+        <h4>淘系运营</h4>
+        <p>逛逛 / 意见领袖短视频</p>
+      </div>
+      <div class="dept-item">
+        <div class="di-icon">📱</div>
+        <h4>新媒体</h4>
+        <p>抖音/小红书/视频号</p>
+      </div>
+      <div class="dept-item">
+        <div class="di-icon">🌏</div>
+        <h4>跨境电商</h4>
+        <p>多语言口播视频</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 开发进度 -->
+  <div class="section">
+    <div class="section-head purple">开发进度 & 需求状态</div>
+    <div class="status-grid">
+      <div class="status-item">
+        <div class="status-icon done">✅</div>
+        <div class="status-info">
+          <h4>纯口播模式</h4>
+          <p>仅说话，不含手持动作（当前客户需求）</p>
+        </div>
+      </div>
+      <div class="status-item">
+        <div class="status-icon test">🔍</div>
+        <div class="status-info">
+          <h4>手持相机模式</h4>
+          <p>后续开发中，需测试平台支持</p>
+        </div>
+      </div>
+      <div class="status-item">
+        <div class="status-icon test">🤖</div>
+        <div class="status-info">
+          <h4>智能体集成</h4>
+          <p>后续尝试搭建智能体，生成口播/刷单/其他视频</p>
+        </div>
+      </div>
+      <div class="status-item">
+        <div class="status-icon idea">💬</div>
+        <div class="status-info">
+          <h4>征集新需求</h4>
+          <p>欢迎各部门提出使用场景和建议</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 费用对比（Grok口播视频） ====== -->
+  <div class="divider">
+    <span class="label">💰 费用对比 · Grok 口播视频生产</span>
+  </div>
+
+  <div class="section">
+    <div class="section-head purple">单条费用明细</div>
+    <div class="cost-duo">
+      <div class="cost-card cc-api">
+        <h3>🤖 Grok API 批量生成</h3>
+        <div class="cost-row"><span class="cl">单次调用费用</span><span class="cv" style="color:var(--accent)">¥0.2</span></div>
+        <div class="cost-row"><span class="cl">单条实际成本（含重试）</span><span class="cv" style="color:var(--accent)">¥0.2 ~ 0.6</span></div>
+        <div class="cost-row"><span class="cl">成功率</span><span class="cv">33% ~ 100%（1-3次出一个）</span></div>
+        <div class="cost-row"><span class="cl">单条生成时间</span><span class="cv">1-3 分钟</span></div>
+        <div class="cost-row"><span class="cl">月产量上限</span><span class="cv" style="color:var(--green)">无上限（7×24）</span></div>
+        <div class="cost-row"><span class="cl">界面状态</span><span class="cv"><span class="tag tag-amber">开发中</span></span></div>
+      </div>
+      <div class="cost-card cc-manual">
+        <h3>👤 人工制作</h3>
+        <div class="cost-row"><span class="cl">共享账户月费</span><span class="cv" style="color:var(--accent2)">¥80/月</span></div>
+        <div class="cost-row"><span class="cl">个人独享月费</span><span class="cv" style="color:var(--accent2)">¥255/月</span></div>
+        <div class="cost-row"><span class="cl">日产量</span><span class="cv">~30 条/天</span></div>
+        <div class="cost-row"><span class="cl">月尝试量</span><span class="cv">~900 条</span></div>
+        <div class="cost-row"><span class="cl">月成功产出</span><span class="cv" style="color:var(--accent2)">~600 条（67%）</span></div>
+        <div class="cost-row"><span class="cl">折算每条成本</span><span class="cv" style="color:var(--accent2)">¥0.13（共享）/ ¥0.43（个人）</span></div>
+        <div class="cost-row"><span class="cl">可用状态</span><span class="cv"><span class="tag tag-green">即时可用</span></span></div>
+        <div class="cost-highlight">
+          💡 共享账户 ¥80/月 性价比最高；个人独享 ¥255/月 稳定不受他人影响
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 时间对比表 -->
+  <div class="section">
+    <div class="section-head purple">生成时间对比</div>
+    <table>
+      <thead>
+        <tr><th>指标</th><th>Grok API</th><th>人工制作</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>单条耗时</td><td><strong>1-3分钟</strong> <span class="tag tag-green">快</span></td><td>~3-5分钟</td></tr>
+        <tr><td>实际有效时间</td><td>3-9分钟/条（含重试）</td><td>~5分钟/条 <span class="tag tag-green">稳定</span></td></tr>
+        <tr><td>日产量</td><td>待定（可7×24运行）</td><td>~30条/天</td></tr>
+        <tr><td>月成功产出</td><td>待测（预估500-2000+）</td><td>~600条 <span class="tag tag-amber">67%成功率</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 成本效益速算 -->
+  <div class="section">
+    <div class="section-head purple">📊 月产量成本效益速算</div>
+    <div class="calc-grid">
+      <div class="calc-item">
+        <div class="qty">600 条</div>
+        <div class="costs">
+          <span class="ca">API ¥120-360</span>
+          <span class="cm">人工 ¥80</span>
+        </div>
+        <span class="tag tag-green">推荐人工</span>
+      </div>
+      <div class="calc-item">
+        <div class="qty">1,500 条</div>
+        <div class="costs">
+          <span class="ca">API ¥300-900</span>
+          <span class="cm">人工 ¥200+</span>
+        </div>
+        <span class="tag tag-amber">看成功率</span>
+      </div>
+      <div class="calc-item">
+        <div class="qty">3,000 条</div>
+        <div class="costs">
+          <span class="ca">API ¥600-1.8k</span>
+          <span class="cm">人工 ¥400+</span>
+        </div>
+        <span class="tag tag-purple">推荐API</span>
+      </div>
+      <div class="calc-item">
+        <div class="qty">10,000 条</div>
+        <div class="costs">
+          <span class="ca">API ¥2k-6k</span>
+          <span class="cm">人工 不现实</span>
+        </div>
+        <span class="tag tag-purple">API唯一选择</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 可行度 -->
+  <div class="section">
+    <div class="section-head purple">🛠️ 开发可行度评估</div>
+    <div class="cost-duo">
+      <div class="cost-card" style="border-top:2px solid var(--accent);">
+        <h3>🤖 Grok API 方案</h3>
+        <div class="bar-group">
+          <div class="bar-row">
+            <span class="bar-label">技术可行性</span>
+            <div class="bar-track"><div class="bar-fill purple" style="width:80%;">4/5</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">界面完成度</span>
+            <div class="bar-track"><div class="bar-fill amber" style="width:50%;">开发中</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">成功率</span>
+            <div class="bar-track"><div class="bar-fill amber" style="width:55%;">不稳定</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">扩展能力</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:100%;">5/5</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">维护成本</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:80%;">低 4/5</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cost-card" style="border-top:2px solid var(--accent2);">
+        <h3>👤 人工制作方案</h3>
+        <div class="bar-group">
+          <div class="bar-row">
+            <span class="bar-label">即时可用</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:100%;">5/5</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">质量稳定</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:80%;">4/5</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">产能上限</span>
+            <div class="bar-track"><div class="bar-fill amber" style="width:55%;">受限</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">扩展能力</span>
+            <div class="bar-track"><div class="bar-fill amber" style="width:35%;">2/5</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">无需开发</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:100%;">5/5</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 实施路径 -->
+  <div class="section">
+    <div class="section-head purple">🚀 口播视频实施路径</div>
+    <div class="timeline">
+      <div class="tl-item t1">
+        <span class="phase">短期 · 现在→1个月</span>
+        <h3>人工保底 + API 测试</h3>
+        <ul>
+          <li>人工维持 600条/月</li>
+          <li>开发 Grok API 批量脚本</li>
+          <li>积累成功率数据</li>
+          <li>测试手持相机需求</li>
+        </ul>
+      </div>
+      <div class="tl-item t2">
+        <span class="phase">中期 · 1-3个月</span>
+        <h3>API 为主 + 人工补位</h3>
+        <ul>
+          <li>API 界面开发完成</li>
+          <li>切换为主要生产方式</li>
+          <li>人工处理失败补单</li>
+          <li>目标 1500-3000+条/月</li>
+        </ul>
+      </div>
+      <div class="tl-item t3">
+        <span class="phase">长期 · 3个月+</span>
+        <h3>全自动化流水线</h3>
+        <ul>
+          <li>素材采集 → AI文案</li>
+          <li>→ 批量生成 → 质检</li>
+          <li>→ 自动发布</li>
+          <li>多账号/多平台分发</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== Lightbox ====== -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="放大预览">
+  </div>
+
+  <script>
+    function openLightbox(el) {
+      var img = el.querySelector('img');
+      if (!img) return;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').className = 'lightbox show';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').className = 'lightbox';
+    }
+    document.onkeydown = function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    };
+  </script>
+
+  <!-- ====== Footer ====== -->
+  <div class="footer">
+    AI创新中心 · 工具开发组 · 项目方案征求意见 · 2026-05-03<br>
+    <span style="margin-top:0.3rem;display:inline-block;">有想法建议请私聊提出，将持续优化开发 ✨</span>
+  </div>
+
+</div>
+</body>
+</html>
